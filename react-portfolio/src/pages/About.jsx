@@ -1,4 +1,5 @@
 import { Container, Typography, Avatar, Box } from "@mui/material";
+import profileImage from "../assets/profile.jpg"; // Make sure the file exists
 
 function About() {
   return (
@@ -15,11 +16,13 @@ function About() {
         padding: 3
       }}
     >
-      <Avatar src="/path-to-your-photo.jpg" alt="Your Name" sx={{ width: 150, height: 150, mb: 2 }} />
-      <Typography variant="h4" gutterBottom>
+      <Avatar src={profileImage} alt="Profile Picture" sx={{ width: 150, height: 150, mb: 2 }} />
+      
+      <Typography variant="h4" gutterBottom sx={{ color: "#000000" }}>  
         About Me
       </Typography>
-      <Typography variant="body1" sx={{ maxWidth: 600 }}>
+
+      <Typography variant="body1" sx={{ maxWidth: 600, color: "#000000" }}>
         Hello! I'm a web developer specializing in React. I enjoy building modern, 
         responsive, and user-friendly web applications.
       </Typography>

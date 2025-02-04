@@ -1,39 +1,48 @@
 import { useState } from "react";
 import { 
   TextField, Button, Typography, Box, 
-  Card, CardContent, Container 
+  Card, CardContent, Container, Grid, Checkbox, FormControlLabel 
 } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MessageIcon from "@mui/icons-material/Message";
+import PhoneIcon from "@mui/icons-material/Phone";
 
-function Contact() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [errors, setErrors] = useState({ name: false, email: false, message: false });
+function ContactUs() {
+  const [formData, setFormData] = useState({ 
+    firstName: "", lastName: "", email: "", phone: "", message: "", terms: false 
+  });
+  const [errors, setErrors] = useState({ 
+    firstName: false, lastName: false, email: false, phone: false, message: false, terms: false 
+  });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    setErrors({ ...errors, [e.target.name]: false }); // Clear errors when typing
+    const { name, value, type, checked } = e.target;
+    setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
+    setErrors({ ...errors, [name]: false });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // Validation: Ensure no empty fields
-    if (!formData.name || !formData.email || !formData.message) {
+
+    // Validation: Ensure no empty fields & privacy policy checked
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !formData.message || !formData.terms) {
       setErrors({
-        name: !formData.name,
+        firstName: !formData.firstName,
+        lastName: !formData.lastName,
         email: !formData.email,
-        message: !formData.message
+        phone: !formData.phone,
+        message: !formData.message,
+        terms: !formData.terms
       });
       return;
     }
-    
+
     console.log("Form submitted:", formData);
     alert("Message Sent Successfully!");
-    
+
     // Clear form after submission
-    setFormData({ name: "", email: "", message: "" });
+    setFormData({ firstName: "", lastName: "", email: "", phone: "", message: "", terms: false });
   };
 
   return (
@@ -48,31 +57,57 @@ function Contact() {
         textAlign: "center"
       }}
     >
-      <Typography variant="h4" fontWeight="bold" gutterBottom>
-        Contact Me
+      <Typography variant="h6" color="primary" gutterBottom>
+        Contact Us
+      </Typography>
+      <Typography variant="h4" fontWeight="#1245a8" gutterBottom>
+        Get in touch
+      </Typography>
+      <Typography variant="body1" color="#1245a8" gutterBottom>
+        We'd love to hear from you. Please fill out this form.
       </Typography>
 
       {/* Contact Form Card */}
-      <Card sx={{ width: "100%", borderRadius: 3, boxShadow: 5 }}>
+      <Card sx={{ width: "100%", borderRadius: 3, boxShadow: 5, mt: 3 }}>
         <CardContent>
           <Box component="form" noValidate autoComplete="off" onSubmit={handleSubmit}>
-            <TextField
-              label="Your Name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              fullWidth
-              required
-              error={errors.name}
-              helperText={errors.name ? "Name is required" : ""}
-              sx={{ mb: 2 }}
-              InputProps={{
-                startAdornment: <AccountCircleIcon sx={{ mr: 1 }} />
-              }}
-            />
+            {/* First & Last Name Row */}
+            <Grid container spacing={2} sx={{ mb: 2 }}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  label="First Name"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  fullWidth
+                  required
+                  error={errors.firstName}
+                  helperText={errors.firstName ? "First name is required" : ""}
+                  InputProps={{
+                    startAdornment: <AccountCircleIcon sx={{ mr: 1 }} />
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  label="Last Name"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  fullWidth
+                  required
+                  error={errors.lastName}
+                  helperText={errors.lastName ? "Last name is required" : ""}
+                  InputProps={{
+                    startAdornment: <AccountCircleIcon sx={{ mr: 1 }} />
+                  }}
+                />
+              </Grid>
+            </Grid>
 
+            {/* Email Input */}
             <TextField
-              label="Your Email"
+              label="Email"
               name="email"
               value={formData.email}
               onChange={handleChange}
@@ -87,8 +122,27 @@ function Contact() {
               }}
             />
 
+            {/* Phone Number Input */}
             <TextField
-              label="Your Message"
+              label="Phone Number"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              fullWidth
+              required
+              type="tel"
+              placeholder="+1 (555) 000-0000"
+              error={errors.phone}
+              helperText={errors.phone ? "Phone number is required" : ""}
+              sx={{ mb: 2 }}
+              InputProps={{
+                startAdornment: <PhoneIcon sx={{ mr: 1 }} />
+              }}
+            />
+
+            {/* Message Input */}
+            <TextField
+              label="How can we help?"
               name="message"
               value={formData.message}
               onChange={handleChange}
@@ -104,6 +158,21 @@ function Contact() {
               }}
             />
 
+            {/* Privacy Policy Checkbox */}
+            <FormControlLabel
+              control={
+                <Checkbox 
+                  checked={formData.terms} 
+                  onChange={handleChange} 
+                  name="terms" 
+                  color="primary" 
+                />
+              }
+              label="You agree to our friendly privacy policy"
+              sx={{ display: "block", mb: 3 }}
+            />
+
+            {/* Submit Button */}
             <Button 
               type="submit"
               variant="contained"
@@ -128,4 +197,4 @@ function Contact() {
   );
 }
 
-export default Contact;
+export default ContactUs;

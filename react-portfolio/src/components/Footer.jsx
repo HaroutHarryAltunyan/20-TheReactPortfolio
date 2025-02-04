@@ -5,7 +5,7 @@ function Footer() {
     <Box 
       component="footer" 
       sx={{ 
-        backgroundColor: "#333", 
+        backgroundColor: " #1245a8", 
         color: "white", 
         textAlign: "center", 
         py: 2, 
@@ -18,7 +18,7 @@ function Footer() {
       <Container>
         <Typography variant="body2">© 2025 Harout Altunyan</Typography>
         <Box sx={{ mt: 1 }}>
-          <Link href="https://github.com/yourgithub" target="_blank" sx={{ mx: 1, color: "white", textDecoration: "none" }}>
+          <Link href="https://github.com/HaroutHarryAltunyan" target="_blank" sx={{ mx: 1, color: "white", textDecoration: "none" }}>
             GitHub
           </Link>
           <Link href="https://linkedin.com/in/yourlinkedin" target="_blank" sx={{ mx: 1, color: "white", textDecoration: "none" }}>

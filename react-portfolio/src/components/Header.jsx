@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <AppBar position="static" sx={{ backgroundColor: "#333", width: "100%" }}>
+    <AppBar position="static" sx={{ backgroundColor: "#1245a8", width: "100%" }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
           Harout Altunyan
