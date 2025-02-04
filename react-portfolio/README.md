@@ -8,9 +8,9 @@ This is a **React-based portfolio** showcasing my projects, experience, and cont
 ---
 
 ## **🚀 Live Demo & Repository**  
-🔗 **Live URL:** [Netlify Deployment](https://your-netlify-url.netlify.app/)  
+🔗 **Live URL:** [Render Deployment](https://two0-thereactportfolio.onrender.com/)  
 🔗 **GitHub Repository:** [GitHub Repo](https://github.com/HaroutHarryAltunyan/20-TheReactPortfolio)  
-
+![Project Screenshot](./src/assets/projectimage.png)
 ---
 
 ## **📀 Features**  
