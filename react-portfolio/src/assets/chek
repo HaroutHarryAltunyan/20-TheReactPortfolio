@@ -1,0 +1,514 @@
+this is the main.jsx : 
+
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.jsx'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+
+index.css : :root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Remove display: flex; center, which was causing layout issues */
+body {
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+App.jsx : import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";  // ✅ Correct import
+import Footer from "./components/Footer";
+import About from "./pages/About";
+import Portfolio from "./pages/Portfolio";
+import Contact from "./pages/Contact";
+import Resume from "./pages/Resume";
+import { Box } from "@mui/material";
+
+function App() {
+  return (
+    <Router>
+      <Box 
+        sx={{ 
+          display: "flex", 
+          flexDirection: "column", 
+          minHeight: "100vh", 
+          width: "100%",
+          overflowX: "hidden",
+          backgroundColor: "#f5f5f5"
+        }}
+      >
+        <Header />
+        
+        {/* Main Content - Full Width & Centered */}
+        <Box 
+          component="main" 
+          sx={{ 
+            flexGrow: 1, 
+            display: "flex", 
+            justifyContent: "center", 
+            alignItems: "center", 
+            width: "100%", 
+            minHeight: "calc(100vh - 64px - 64px)", // Adjust for header/footer
+            px: 3
+          }}
+        >
+          <Routes>
+            <Route path="/" element={<About />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/resume" element={<Resume />} />
+          </Routes>
+        </Box>
+
+        <Footer />
+      </Box>
+    </Router>
+  );
+}
+
+export default App;
+
+
+app.css : 
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+header {
+  background: #333;
+  color: white;
+  padding: 10px;
+}
+
+header nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+header nav ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+footer {
+  background: #222;
+  color: white;
+  padding: 10px;
+}
+
+.project img {
+  width: 200px;
+  height: auto;
+}
+
+
+pages/About.jsx : import { Typography, Avatar, Box } from "@mui/material";
+
+function About() {
+  return (
+    <Box 
+      sx={{ 
+        display: "flex", 
+        flexDirection: "column", 
+        alignItems: "center", 
+        justifyContent: "center", 
+        minHeight: "100vh", 
+        width: "100%",
+        textAlign: "center",
+        backgroundColor: "#fff",
+        padding: 3
+      }}
+    >
+      <Avatar src="/path-to-your-photo.jpg" alt="Your Name" sx={{ width: 150, height: 150, mb: 2 }} />
+      <Typography variant="h4" gutterBottom>
+        About Me
+      </Typography>
+      <Typography variant="body1" sx={{ maxWidth: 600 }}>
+        Hello! I'm a web developer specializing in React. I enjoy building modern, 
+        responsive, and user-friendly web applications.
+      </Typography>
+    </Box>
+  );
+}
+
+export default About;       
+
+pages/ Contact.jsx : 
+
+function Contact() {
+    return (
+      <section>
+        <h2>Contact Me</h2>
+        <form>
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Your Email" required />
+          <textarea placeholder="Your Message" required></textarea>
+          <button type="submit">Send</button>
+        </form>
+      </section>
+    );
+  }
+  
+  export default Contact;
+
+  pages/portfolio: 
+
+  function Portfolio() {
+    return (
+      <section>
+        <h2>My Projects</h2>
+        <p>Here are some of my projects.</p>
+      </section>
+    );
+  }
+  
+  export default Portfolio;
+
+  pages/resume : 
+
+  function Resume() {
+    return (
+      <section>
+        <h2>Resume</h2>
+        <a href="/path-to-your-resume.pdf" download>Download My Resume</a>
+      </section>
+    );
+  }
+  
+  export default Resume;
+
+
+  components/About: import { Container, Typography, Avatar, Box } from "@mui/material";
+
+function About() {
+  return (
+    <Box 
+      sx={{ 
+        display: "flex", 
+        flexDirection: "column", 
+        alignItems: "center", 
+        justifyContent: "center", 
+        minHeight: "100vh", 
+        width: "100%",
+        textAlign: "center",
+        backgroundColor: "#f5f5f5"
+      }}
+    >
+      <Avatar src="/path-to-your-photo.jpg" alt="Your Name" sx={{ width: 150, height: 150, mb: 2 }} />
+      <Typography variant="h4" gutterBottom>
+        About Me
+      </Typography>
+      <Typography variant="body1" sx={{ maxWidth: 600 }}>
+        Hello! I'm a web developer specializing in React. I enjoy building modern, 
+        responsive, and user-friendly web applications.
+      </Typography>
+    </Box>
+  );
+}
+
+export default About;
+
+component/Contact.jsx:
+
+import { Container, Typography, Avatar, Box } from "@mui/material";
+
+function About() {
+  return (
+    <Box 
+      sx={{ 
+        display: "flex", 
+        flexDirection: "column", 
+        alignItems: "center", 
+        justifyContent: "center", 
+        minHeight: "100vh", 
+        width: "100%",
+        textAlign: "center",
+        backgroundColor: "#f5f5f5"
+      }}
+    >
+      <Avatar src="/path-to-your-photo.jpg" alt="Your Name" sx={{ width: 150, height: 150, mb: 2 }} />
+      <Typography variant="h4" gutterBottom>
+        About Me
+      </Typography>
+      <Typography variant="body1" sx={{ maxWidth: 600 }}>
+        Hello! I'm a web developer specializing in React. I enjoy building modern, 
+        responsive, and user-friendly web applications.
+      </Typography>
+    </Box>
+  );
+}
+
+export default About;
+
+component/footer.jsx 
+
+import { Box, Typography, Link, Container } from "@mui/material";
+
+function Footer() {
+  return (
+    <Box 
+      component="footer" 
+      sx={{ 
+        backgroundColor: "#333", 
+        color: "white", 
+        textAlign: "center", 
+        py: 2, 
+        mt: "auto",
+        width: "100%",
+        position: "relative",
+        bottom: 0
+      }}
+    >
+      <Container>
+        <Typography variant="body2">© 2025 Harout Altunyan</Typography>
+        <Box sx={{ mt: 1 }}>
+          <Link href="https://github.com/yourgithub" target="_blank" sx={{ mx: 1, color: "white", textDecoration: "none" }}>
+            GitHub
+          </Link>
+          <Link href="https://linkedin.com/in/yourlinkedin" target="_blank" sx={{ mx: 1, color: "white", textDecoration: "none" }}>
+            LinkedIn
+          </Link>
+          <Link href="https://stackoverflow.com/users/yourid" target="_blank" sx={{ mx: 1, color: "white", textDecoration: "none" }}>
+            Stack Overflow
+          </Link>
+        </Box>
+      </Container>
+    </Box>
+  );
+}
+
+export default Footer;
+
+component/Header : 
+
+import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
+import { Link } from "react-router-dom";
+
+function Header() {
+  return (
+    <AppBar position="static" sx={{ backgroundColor: "#333", width: "100%" }}>
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          Harout Altunyan
+        </Typography>
+        <Box>
+          <Button color="inherit" component={Link} to="/">About Me</Button>
+          <Button color="inherit" component={Link} to="/portfolio">Portfolio</Button>
+          <Button color="inherit" component={Link} to="/contact">Contact</Button>
+          <Button color="inherit" component={Link} to="/resume">Resume</Button>
+        </Box>
+      </Toolbar>
+    </AppBar>
+  );
+}
+
+export default Header;
+
+
+component/Portfolio: 
+
+import { Grid, Typography, Container } from "@mui/material";
+import Project from "../components/Project";
+
+function Portfolio() {
+  const projects = [
+    { title: "Project 1", image: "/path-to-image.jpg", deployed: "#", repo: "#" },
+    { title: "Project 2", image: "/path-to-image.jpg", deployed: "#", repo: "#" },
+    { title: "Project 3", image: "/path-to-image.jpg", deployed: "#", repo: "#" },
+    { title: "Project 4", image: "/path-to-image.jpg", deployed: "#", repo: "#" },
+    { title: "Project 5", image: "/path-to-image.jpg", deployed: "#", repo: "#" },
+    { title: "Project 6", image: "/path-to-image.jpg", deployed: "#", repo: "#" },
+  ];
+
+  return (
+    <Container 
+      maxWidth="lg" 
+      sx={{ 
+        display: "flex", 
+        flexDirection: "column", 
+        alignItems: "center", 
+        justifyContent: "center", 
+        minHeight: "100vh",
+        textAlign: "center"
+      }}
+    >
+      <Typography variant="h4" gutterBottom>
+        Portfolio
+      </Typography>
+      <Grid container spacing={3} justifyContent="center">
+        {projects.map((project, index) => (
+          <Grid item xs={12} sm={6} md={4} key={index}>
+            <Project {...project} />
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
+  );
+}
+
+export default Portfolio;
+
+component/ project.jsx :
+
+import { Grid, Typography, Box } from "@mui/material";
+import Project from "../components/Project";
+
+function Portfolio() {
+  const projects = [
+    { title: "Project 1", image: "/path-to-image.jpg", deployed: "#", repo: "#" },
+    { title: "Project 2", image: "/path-to-image.jpg", deployed: "#", repo: "#" },
+    { title: "Project 3", image: "/path-to-image.jpg", deployed: "#", repo: "#" },
+    { title: "Project 4", image: "/path-to-image.jpg", deployed: "#", repo: "#" },
+    { title: "Project 5", image: "/path-to-image.jpg", deployed: "#", repo: "#" },
+    { title: "Project 6", image: "/path-to-image.jpg", deployed: "#", repo: "#" },
+  ];
+
+  return (
+    <Box 
+      sx={{ 
+        display: "flex", 
+        flexDirection: "column", 
+        alignItems: "center", 
+        justifyContent: "center", 
+        minHeight: "100vh", 
+        width: "100%",
+        textAlign: "center",
+        backgroundColor: "#fff"
+      }}
+    >
+      <Typography variant="h4" gutterBottom>
+        Portfolio
+      </Typography>
+      <Grid container spacing={3} justifyContent="center">
+        {projects.map((project, index) => (
+          <Grid item xs={12} sm={6} md={4} key={index}>
+            <Project {...project} />
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
+  );
+}
+
+export default Portfolio;
+
+component/Resume: import { Typography, Button, List, ListItem, ListItemText, Box } from "@mui/material";
+
+function Resume() {
+  return (
+    <Box 
+      sx={{ 
+        display: "flex", 
+        flexDirection: "column", 
+        alignItems: "center", 
+        justifyContent: "center", 
+        minHeight: "100vh", 
+        width: "100%",
+        textAlign: "center",
+        backgroundColor: "#fff"
+      }}
+    >
+      <Typography variant="h4" gutterBottom>
+        Resume
+      </Typography>
+      <Button variant="contained" color="primary" href="/path-to-your-resume.pdf" download sx={{ mb: 3 }}>
+        Download Resume
+      </Button>
+      <Typography variant="h5" gutterBottom>
+        Proficiencies
+      </Typography>
+      <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
+        <List>
+          <ListItem>
+            <ListItemText primary="React.js" />
+          </ListItem>
+          <ListItem>
+            <ListItemText primary="Node.js" />
+          </ListItem>
+          <ListItem>
+            <ListItemText primary="MongoDB" />
+          </ListItem>
+        </List>
+      </Box>
+    </Box>
+  );
+}
+
+export default Resume;
