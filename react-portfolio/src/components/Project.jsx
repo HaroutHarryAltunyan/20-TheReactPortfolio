@@ -1,41 +1,42 @@
-import { Grid, Typography, Box } from "@mui/material";
-import Project from "./Project";
+import { Card, CardMedia, CardContent, Typography, Button, CardActions } from "@mui/material";
 
-function Portfolio() {
-  const projects = [
-    { title: "Project 1", image: "/path-to-image.jpg", deployed: "#", repo: "#" },
-    { title: "Project 2", image: "/path-to-image.jpg", deployed: "#", repo: "#" },
-    { title: "Project 3", image: "/path-to-image.jpg", deployed: "#", repo: "#" },
-    { title: "Project 4", image: "/path-to-image.jpg", deployed: "#", repo: "#" },
-    { title: "Project 5", image: "/path-to-image.jpg", deployed: "#", repo: "#" },
-    { title: "Project 6", image: "/path-to-image.jpg", deployed: "#", repo: "#" },
-  ];
-
+function Project({ title, image, deployed, repo }) {
   return (
-    <Box 
-      sx={{ 
-        display: "flex", 
-        flexDirection: "column", 
-        alignItems: "center", 
-        justifyContent: "center", 
-        minHeight: "100vh", 
-        width: "100%",
-        textAlign: "center",
-        backgroundColor: "#fff"
-      }}
-    >
-      <Typography variant="h4" gutterBottom>
-        Portfolio
-      </Typography>
-      <Grid container spacing={3} justifyContent="center">
-        {projects.map((project, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
-            <Project {...project} />
-          </Grid>
-        ))}
-      </Grid>
-    </Box>
+    <Card sx={{ maxWidth: 345, m: 2, boxShadow: 3, borderRadius: 3 }}>
+      <CardMedia
+        component="img"
+        height="200"
+        image={image}
+        alt={title}
+        sx={{ objectFit: "cover" }}
+      />
+      <CardContent>
+        <Typography variant="h6" gutterBottom>
+          {title}
+        </Typography>
+      </CardContent>
+      <CardActions sx={{ display: "flex", justifyContent: "space-between", px: 2 }}>
+        <Button 
+          size="small" 
+          href={deployed} 
+          target="_blank" 
+          variant="contained" 
+          color="primary"
+        >
+          Live Demo
+        </Button>
+        <Button 
+          size="small" 
+          href={repo} 
+          target="_blank" 
+          variant="outlined" 
+          color="secondary"
+        >
+          GitHub
+        </Button>
+      </CardActions>
+    </Card>
   );
 }
 
-export default Portfolio;
+export default Project;
